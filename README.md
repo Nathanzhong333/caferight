@@ -85,6 +85,26 @@ npm run dev
 npm run build
 ```
 
+## 🚀 云端部署
+
+不想在本地运行？可以部署到云端，让全世界访问！
+
+### 推荐方案：Vercel（免费，3分钟完成）
+
+1. 访问 https://vercel.com/ 注册
+2. 点击 "New Project"
+3. 导入您的 GitHub 仓库 `caferight`
+4. 点击 "Deploy"
+5. 完成！获得访问地址（如 `https://caferight.vercel.app`）
+
+**详细部署指南请查看 [部署指南.md](./部署指南.md)**
+
+支持的部署平台：
+- ✅ Vercel（推荐）
+- ✅ Netlify
+- ✅ GitHub Pages
+- ✅ 云服务器（阿里云、腾讯云等）
+
 ## 项目结构
 
 ```
