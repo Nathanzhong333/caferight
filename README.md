@@ -27,21 +27,37 @@
 npm install
 ```
 
-### 2. 配置高德地图 API Key
+### 2. 配置高德地图 API Key（重要！）
+
+#### 2.1 获取 API Key
 
 1. 访问 [高德开放平台](https://lbs.amap.com/)
 2. 注册并登录账号
 3. 创建应用并获取 Web 端（JS API）的 API Key
-4. 打开 `src/components/Map.tsx` 文件
-5. 将 `YOUR_AMAP_KEY` 替换为您的 API Key
 
-```typescript
-AMapLoader.load({
-  key: 'YOUR_AMAP_KEY', // 替换为您的高德地图 API Key
-  version: '2.0',
-  plugins: ['AMap.Marker', 'AMap.InfoWindow'],
-})
+#### 2.2 配置环境变量
+
+```bash
+# 复制环境变量模板
+cp .env.example .env.local
+
+# 编辑 .env.local 文件，填入您的 API Key
+VITE_AMAP_KEY=your_amap_key_here
 ```
+
+#### 2.3 安全设置（防止密钥被滥用）
+
+在高德地图控制台进行以下设置：
+
+1. **设置域名白名单**：
+   - 开发环境添加：`localhost:5173`
+   - 生产环境添加您的实际域名
+
+2. **设置调用限制**：
+   - 每日调用次数上限（建议 10,000 次/天）
+   - 每秒请求数限制（建议 100 次/秒）
+
+**详细安全配置请查看 [SECURITY.md](./SECURITY.md)**
 
 ### 3. 启动开发服务器
 
@@ -119,6 +135,18 @@ caferight/
 2. **产品销售**: 销售咖啡豆、器具等相关产品
 3. **会员服务**: 提供高级功能和优惠
 4. **评鉴服务**: 付费邀请大师评鉴
+
+## 安全说明
+
+本项目已实施以下安全措施：
+
+- ✅ API 密钥通过环境变量管理，不暴露在代码中
+- ✅ `.env.local` 已加入 `.gitignore`，不会提交到版本控制
+- ✅ 支持域名白名单和调用限制配置
+
+**重要提示**：
+- 前端编译后仍会暴露 API Key，务必在高德地图控制台设置**域名白名单**
+- 生产环境建议使用后端代理 API 调用（详见 [SECURITY.md](./SECURITY.md)）
 
 ## 贡献
 

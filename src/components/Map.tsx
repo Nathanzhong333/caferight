@@ -13,9 +13,16 @@ const Map = ({ coffeeShops, onShopClick }: MapProps) => {
   const [AMap, setAMap] = useState<any>(null);
 
   useEffect(() => {
+    const apiKey = import.meta.env.VITE_AMAP_KEY;
+
+    if (!apiKey) {
+      console.error('错误：未配置高德地图 API Key。请在 .env.local 文件中设置 VITE_AMAP_KEY');
+      return;
+    }
+
     // 加载高德地图
     AMapLoader.load({
-      key: 'YOUR_AMAP_KEY', // 需要在高德地图开放平台申请
+      key: apiKey,
       version: '2.0',
       plugins: ['AMap.Marker', 'AMap.InfoWindow'],
     })
