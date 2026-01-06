@@ -21,6 +21,8 @@ const Map = ({ coffeeShops, onShopClick }: MapProps) => {
     }
 
     // 加载高德地图
+    // 注意：地图 JS API 的加载和渲染是免费的，不消耗 Web 服务 API 配额
+    // 详见：API_COST.md
     AMapLoader.load({
       key: apiKey,
       version: '2.0',
@@ -55,6 +57,7 @@ const Map = ({ coffeeShops, onShopClick }: MapProps) => {
     map.clearMap();
 
     // 为每个咖啡店添加标记
+    // 注意：使用静态数据（不调用搜索、地理编码等付费 API）
     coffeeShops.forEach((shop) => {
       const marker = new AMap.Marker({
         position: [shop.location.lng, shop.location.lat],
